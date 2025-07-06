@@ -1,0 +1,381 @@
+/* PÁGINA */
+:root {
+  --bg-main: #222831;
+  --bg-accent: #393E46;
+  --text-main: #948979;
+  --text-accent: #DFD0B8;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-main);
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    min-width: 100vw;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* HEADER */
+header {
+    background-color: var(--bg-accent);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+header h1 {
+    color: var(--text-accent);
+    font-size: 36px;
+    text-align: center;
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+header h3 {
+    color: var(--text-main);
+    font-size: 24px;
+    text-align: center;
+    margin: 0;
+}
+
+@media (max-width: 700px) {
+    header h1 {
+        font-size: 24px;
+    }
+    
+    header h3 {
+        font-size: 16px;
+    }
+}
+
+/* ACCORDION - abas */
+.navbar {
+    max-width: 95vmax;
+    margin: 0 auto;
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-direction: row;
+}
+
+.accordion-container {
+    display: flex;
+    flex: 1;
+    min-width: 60px;
+    transition: flex 0.4s ease;
+    position: relative;
+}
+
+.accordion-container.active {
+    flex: 12;
+}
+
+.accordion {
+    background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-accent) 100%);
+    color: var(--text-main);
+    cursor: pointer;
+    padding: 20px;
+    min-width: 60px;
+    text-align: justify;
+    border: solid 2px var(--text-main);
+    border-radius: 8px 0px 0px 8px;
+    transition: all 0.3s ease;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    font-weight: bold;
+    font-size: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.accordion:hover {
+    background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-accent) 100%);
+    transform: translateX(5px);
+}
+
+/* cores das abas */
+.accordion-container:nth-child(1) .accordion {
+    background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-accent) 100%);
+}
+
+.accordion-container:nth-child(2) .accordion {
+    background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-accent) 100%);
+}
+
+.accordion-container:nth-child(3) .accordion {
+    background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-accent) 100%);
+}
+
+.accordion-container:nth-child(4) .accordion {
+    background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-accent) 100%);
+}
+
+@media (max-width: 700px) {
+    .navbar {
+        flex-direction: column;
+        max-width: 95vw;
+        width: 100vw;
+        min-width: 0;
+        overflow-x: hidden;
+    }
+    .accordion-container {
+        flex-direction: column;
+        width: 100%;
+        min-width: 0;
+    }
+    .accordion {
+        writing-mode: horizontal-tb;
+        min-width: 0;
+        min-height: 48px;
+        border-radius: 8px 8px 0px 0px;
+        font-size: 18px;
+        padding: 14px;
+        background: linear-gradient(45deg, var(--bg-main) 0%, var(--bg-accent) 100%);
+    }
+    .accordion:hover {
+        transform: translateY(5px);
+    }
+    .panel {
+        width: 100% !important;
+        max-width: 100vw;
+        margin-right: 0;
+        border-radius: 0 0 8px 8px;
+    }
+}
+
+/* PANEL - páginas com conteúdo */
+.panel {
+    padding: 40px 10px;
+    margin-right: 10px;
+    border-radius: 0px 8px 8px 0px;
+    background-color: var(--bg-accent);
+    width: 0px;
+    overflow: hidden;
+    max-height: 80vmin;
+    transition: width 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+.accordion-container.active .panel {
+    width: calc(100% - 60px);
+    padding: 40px 20px;
+}
+
+.accordion-container:nth-child(4) .panel {
+    /* para fins de deixar "alinhado" */
+    margin-right: 0px;
+}
+
+.panel-content {
+    padding-right: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.2s;
+    /* min-width: 300px; */
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.accordion-container.active .panel-content {
+    opacity: 1;
+}
+
+@media (max-width: 700px) {
+    .panel {
+        padding: 10px 10px;
+        width: 100%;
+        height: 10px;
+        max-height: 43vh;
+        border-radius: 0px 0px 8px 8px;
+    }
+
+    .accordion-container.active .panel {
+        height: calc(100% - 60px);
+        padding: 20px 20px;
+    }
+}
+
+/* FORMATAÇÃO */
+.panel h3 {
+    margin: 0 0 15px 0;
+    color: var(--text-accent);
+    font-size: 24px;
+}
+
+.panel p {
+    margin: 0 0 15px 0;
+    color: var(--text-main);
+    line-height: 1.4;
+}
+
+.panel .destaque {
+    font-weight: bold;
+    color: var(--text-accent);
+    text-align: center;
+}
+
+a {
+    text-decoration: underline;
+}
+
+a.especial1 {
+    text-decoration: none;
+}
+
+a.especial2 {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: square;
+    margin-left: 20px;
+    color: var(--text-main);
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/* GAMES */
+.games-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 36px;
+    justify-content: center;
+    align-items: stretch;
+    margin: 32px 0 0 0;
+}
+
+.game-card {
+    background: var(--bg-main);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 320px;
+    min-width: 250px;
+    max-width: 80vw;
+    padding: 16px 12px 20px 12px;
+}
+
+.game-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: contain;
+    margin-bottom: 12px;
+}
+
+.game-title {
+    color: var(--text-accent);
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.game-download {
+    display: inline-block;
+    margin: 4px;  
+    padding: 6px 18px;
+    background: var(--text-accent);
+    color: var(--bg-main);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.game-download:hover {
+    background: var(--text-main);
+    color: var(--text-accent);
+}
+
+@media (max-width: 700px) {
+    .games-grid {
+        gap: 14px;
+    }
+    .game-card {
+        width: 40vw;
+        min-width: 120px;
+        padding: 10px 4px 14px 4px;
+    }
+    .game-card img {
+        height: 100px;
+    }
+    .game-title {
+        font-size: 0.95rem;
+    }
+    .game-download {
+        font-size: 0.9rem;
+        padding: 4px 10px;
+    }
+}
+
+/* GAME EMBED IFRAME */
+.game-embed {
+    width: 50vw;
+    min-width: 320px;
+    max-width: 100vw;
+    height: 60vh;
+    margin: 16px auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    background: #222831;
+}
+
+@media (max-width: 900px) {
+    .game-embed {
+        width: 90vw;
+        height: 44vw;
+        min-width: 0;
+    }
+}
+
+/* CONTATO POR E-MAIL */
+.contact-form {
+    max-width: 20vw;
+}   
+
+.email-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--text-main);
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: var(--bg-main);
+    color: var(--text-accent);
+}
+
+.email-send {
+    display: inline-block;
+    margin: 4px;  
+    padding: 6px 18px;
+    background: var(--text-accent);
+    color: var(--bg-main);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.email-send:hover {
+    background-color: var(--text-main);
+    color: var(--text-accent);
+}
+
+@media (max-width: 700px) {
+    .contact-form {
+        max-width: 50vw;
+    }
+}
